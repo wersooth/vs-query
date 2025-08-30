@@ -21,6 +21,6 @@ def query_vs() -> list:
         response = requests.get(VS_URL)
     except Exception as ex:
         logger.error(ex)
-    logging.info(f"Query VS instance: {0}".format(VS_URL))
+    logging.info(f"Query VS instance: "+ VS_URL)
 
     return response.json()

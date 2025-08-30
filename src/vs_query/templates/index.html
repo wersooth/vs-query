@@ -8,99 +8,81 @@
             Current Date: Y{{RESP['date'].Year}} / {{RESP['date'].Month}}
         </h5>
         <h6 class="card-title">
-            Current Weather: Temp: {{RESP['weather'].Temperature|round }} {% if
-            RESP['weather'].Rainfall == 0 %} Not Raining {% else %} Raining {%
-            endif %}
+            Current Weather: Temp: {{RESP['weather'].Temperature|round }}˚C {%
+            if RESP['weather'].Rainfall == 0 %} Not Raining {% else %} Raining
+            {% endif %}
         </h6>
         <h6 class="card-title">Max players: {{ RESP['maxClients'] }}</h6>
-        <p class="card-text">{{RESP['welcomeMessage']}}</p>
+        <p class="card-text">Server Message: {{RESP['welcomeMessage']}}</p>
 
-        <div class="accordion" id="serverInfoAccordion">
-            <div class="accordion-item">
-                <h2 class="accordion-header" id="headingOne">
-                    <button
-                        class="accordion-button"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#collapseOne"
-                        aria-expanded="true"
-                        aria-controls="collapseOne"
-                    >
-                        Players ({{ RESP['players']|length }})
-                    </button>
-                </h2>
-                <div
-                    id="collapseOne"
-                    class="accordion-collapse collapse show"
-                    aria-labelledby="headingOne"
-                    data-bs-parent="#serverInfoAccordion"
-                >
-                    {% for player in RESP['players'] %}
-
-                    <div class="accordion-body">
-                        <ul>
-                            <li>Name: {{player['Name']}}</li>
-                            <li>
-                                Health:
-                                <div class="progress">
-                                    <div
-                                        class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
-                                        role="progressbar"
-                                        aria-valuenow="{{player['Health'].Current}}"
-                                        aria-valuemin="0"
-                                        aria-valuemax="{{player['Health'].Max}}"
-                                        style="width: {{ player['Health'].Current/player['Health'].Max * 100 }}%"
-                                    >
-                                        {{
-                                        (player['Health'].Current/player['Health'].Max
-                                        * 100)|round }}%
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                Hunger:
-                                <div class="progress">
-                                    <div
-                                        class="progress-bar progress-bar-striped progress-bar-animated bg-success"
-                                        role="progressbar"
-                                        aria-valuenow="{{player['Hunger'].Current}}"
-                                        aria-valuemin="0"
-                                        aria-valuemax="{{player['Hunger'].Max}}"
-                                        style="width: {{ player['Hunger'].Current/player['Hunger'].Max * 100 }}%"
-                                    >
-                                        {{
-                                        (player['Hunger'].Current/player['Hunger'].Max
-                                        * 100)|round }}%
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                Wetness:
-                                <div class="progress">
-                                    <div
-                                        class="progress-bar progress-bar-striped progress-bar-animated"
-                                        role="progressbar"
-                                        aria-valuenow="{{player['Wetness']}}"
-                                        aria-valuemin="0"
-                                        aria-valuemax="1"
-                                        style="width: {{ player['Wetness'] * 100 }}%"
-                                    >
-                                        {{ (player['Wetness'] * 100)|round }}%
-                                    </div>
-                                </div>
-                            </li>
-                            <li>Body Temperature: {{player['BodyTemp']}}</li>
-                            <li>Temperature: {{player['Temperature']}}</li>
-                            <li>
-                                Current Weather: {% if player['Rainfall'] == 0
-                                %} Not Raining {% else %} Raining {% endif %}
-                            </li>
-                        </ul>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
+        <p>Players:</p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Player Name</th>
+                    <th>Health</th>
+                    <th>Hunger</th>
+                    <th>Wetness</th>
+                    <th>Body Temp</th>
+                    <th>Temp</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in RESP['players'] %}
+                <tr>
+                    <td>{{player['Name']}}</td>
+                    <td>
+                        <div class="progress">
+                            <div
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-danger"
+                                role="progressbar"
+                                aria-valuenow="{{player['Health'].Current}}"
+                                aria-valuemin="0"
+                                aria-valuemax="{{player['Health'].Max}}"
+                                style="width: {{ player['Health'].Current/player['Health'].Max * 100 }}%"
+                            >
+                                {{
+                                (player['Health'].Current/player['Health'].Max *
+                                100)|round }}%
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="progress">
+                            <div
+                                class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                                role="progressbar"
+                                aria-valuenow="{{player['Hunger'].Current}}"
+                                aria-valuemin="0"
+                                aria-valuemax="{{player['Hunger'].Max}}"
+                                style="width: {{ player['Hunger'].Current/player['Hunger'].Max * 100 }}%"
+                            >
+                                {{
+                                (player['Hunger'].Current/player['Hunger'].Max *
+                                100)|round }}%
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="progress">
+                            <div
+                                class="progress-bar progress-bar-striped progress-bar-animated"
+                                role="progressbar"
+                                aria-valuenow="{{player['Wetness']}}"
+                                aria-valuemin="0"
+                                aria-valuemax="1"
+                                style="width: {{ player['Wetness'] * 100 }}%"
+                            >
+                                {{ (player['Wetness'] * 100)|round }}%
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{player['BodyTemp']}}˚C</td>
+                    <td>{{player['Temperature']|round}}˚C</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
         <div class="accordion" id="serverInfoAccordion3">
             <div class="accordion-item">
