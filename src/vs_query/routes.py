@@ -11,15 +11,19 @@ logger = logging.getLogger(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html',ver=VERSION, url=VS_URL)
+    rsp = query_vs()
+    return render_template('index.html',ver=VERSION, url=VS_URL, RESP=rsp)
 
 
-def query_vs(url: str) -> list:
+def query_vs() -> list:
     _url = VS_URL
-    response = requests.get(VS_URL)
+    try:
+        response = requests.get(VS_URL)
+    except Exception as ex:
+        logger.error(ex)
 
     print(response.json())
     logging.info(f"Query VS instance: {0}".format(VS_URL))
-    logging.info(response.json())
+    logging.debug(response.json())
 
-    return [item['data'] for item in response.json()]
+    return response.json()
