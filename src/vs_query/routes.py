@@ -24,6 +24,5 @@ def query_vs() -> list:
 
     print(response.json())
     logging.info(f"Query VS instance: {0}".format(VS_URL))
-    logging.debug(response.json())
 
     return response.json()
