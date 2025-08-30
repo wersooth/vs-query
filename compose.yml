@@ -1,0 +1,8 @@
+services:
+  vs-query:
+    image: docker.local/docker/vs-query:dev
+    container_name: vs-query
+    ports:
+      - 5000:5000
+    environment:
+      VS_URL: "http://192.168.1.102:8181"
