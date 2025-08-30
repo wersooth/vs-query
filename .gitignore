@@ -1,4 +1,5 @@
 .ropeproject
-.pyc
+*.pyc
 venv
 sample.json
+__pycache__
