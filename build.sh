@@ -1,6 +1,10 @@
 #!/bin/sh
 
+
+# Edit this to point to your registry:
 DOCKER_TAG=docker.local/docker/vs-query
+
+# Bunch of Voodoo-esque black magic to support the docker build.
 if [[ ! -f tag ]]; then
 	echo "0" > tag
 fi

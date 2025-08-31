@@ -1,0 +1,25 @@
+services:
+  vs:
+    image: docker.local/docker/vintagestory:1.21.0
+    container_name: vs-server
+    volumes:
+      - data:/data
+    ports:
+      - 42420:42420
+      - 8181:8181
+
+  vs-query:
+    image: docker.local/docker/vs-query:latest
+    container_name: vs-query
+    ports:
+      - 5001:5000
+    environment:
+      VS_URL: "http://vs-server:8181"
+
+volumes:
+  data:
+    driver: local
+    driver_opts:
+      type: nfs4
+      o: addr=<IP OF YOUR NFS SERVER>,rw,sync
+      device: ":infra/games/vintagestory"
