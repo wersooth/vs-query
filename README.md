@@ -15,9 +15,12 @@ Solution is built for local usage,
 2. Run ```build.sh```, which will build the docker image and uploads to a registry of your choice.
 3. Run your freshly built container. Set VS_URL Env var to the VS instance (e.g. http://vintagestory.google.com:9898)
 
-  3a. Docker compose: See  ```compose-example.yml``` for sample usage (Bonus: NFS mounting is how I use it, don't forget to update with your IP).
 
-  3b. Docker run (update DOCKER_TAG to your tag used for building.): ```docker run -p 5000:5000 <DOCKER_TAG>```
+    3a. Docker compose: See  ```compose-example.yml``` for sample usage (Bonus: NFS mounting is how I use it, don't forget to update with your IP).
+
+
+    3b. Docker run (update DOCKER_TAG to your tag used for building.): ```docker run -p 5000:5000 <DOCKER_TAG>```
+
 4. Profit
 
 Screenshot:
