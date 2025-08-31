@@ -7,12 +7,25 @@ import logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
+MONTH = ["Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "Aug",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec"
+]
 
 
 @app.route('/')
 def index():
     rsp = query_vs()
-    return render_template('index.html',ver=VERSION, url=VS_URL, RESP=rsp)
+    return render_template('index.html',ver=VERSION, url=VS_URL, RESP=rsp, MONTH=MONTH)
 
 
 def query_vs() -> list:

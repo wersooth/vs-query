@@ -5,7 +5,11 @@
     <div class="card-body">
         <h5 class="card-title">{{ RESP['serverName'] }}</h5>
         <h5 class="card-title">
-            Current Date: Y{{RESP['date'].Year}} / {{RESP['date'].Month}}
+            Current Date: Y{{RESP['date'].year}} / {{
+            MONTH[(RESP['date'].month)-1] }}
+        </h5>
+        <h5 class="card-title">
+            Current Time: {{RESP['date'].hour}}:{{RESP['date'].minute }}
         </h5>
         <h6 class="card-title">
             Current Weather: Temp: {{RESP['weather'].Temperature|round }}˚C {%
