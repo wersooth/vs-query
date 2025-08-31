@@ -17,3 +17,6 @@ Solution is built for local usage,
   3a. Docker compose: See  ```compose-example.yml``` for sample usage (Bonus: NFS mounting is how I use it, don't forget to update with your IP).
   3b. Docker run (update DOCKER_TAG to your tag used for building.): ```docker run -p 5000:5000 <DOCKER_TAG>```
 4. Profit
+
+Screenshot: 
+<img width="1316" height="463" alt="vs-query" src="https://github.com/user-attachments/assets/1f1767ed-e52d-430a-a571-5bcea62369d9" />
