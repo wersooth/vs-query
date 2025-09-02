@@ -8,9 +8,7 @@
             Current Date: Y{{RESP['date'].year}} / {{
             MONTH[(RESP['date'].month)-1] }}
         </h5>
-        <h5 class="card-title">
-            Current Time: {{RESP['date'].hour}}:{{RESP['date'].minute }}
-        </h5>
+        <h5 class="card-title">Current Time: {{TIME}}</h5>
         <h6 class="card-title">
             Current Weather: Temp: {{RESP['weather'].Temperature|round }}˚C {%
             if RESP['weather'].Rainfall == 0 %} Not Raining {% else %} Raining
