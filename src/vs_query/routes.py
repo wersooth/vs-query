@@ -8,26 +8,12 @@ from dateutil.parser import parse
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-MONTH = ["Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "June",
-    "July",
-    "Aug",
-    "Sept",
-    "Oct",
-    "Nov",
-    "Dec"
-]
-
 
 @app.route('/')
 def index():
     rsp = query_vs()
     vs_time = parse("{}:{}".format(rsp['date']['hour'],rsp['date']['minute'])).strftime("%H:%M")
-    return render_template('index.html',ver=VERSION, url=VS_URL, RESP=rsp, MONTH=MONTH,TIME=vs_time)
+    return render_template('index.html',ver=VERSION, url=VS_URL, RESP=rsp, TIME=vs_time)
 
 
 def query_vs() -> list:
